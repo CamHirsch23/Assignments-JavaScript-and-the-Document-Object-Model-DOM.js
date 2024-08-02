@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Styling with JavaScript</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            margin: 10px;
+            display: inline-block;
+        }
+        .hover-box {
+            width: 100px;
+            height: 100px;
+            background-color: lightgreen;
+            margin: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1" class="box" onclick="changeColor(this)">Click me to change color</div>
+    <div id="box2" class="box" onclick="changeColor(this)">Click me to change color</div>
+    <div id="box3" class="box" onclick="changeColor(this)">Click me to change color</div>
+    <div id="hoverBox" class="hover-box">Hover over me</div>
+    <button id="toggleButton">Toggle Box Visibility</button>
+
+    <script>
+        function changeColor(element) {
+            const colors = ['red', 'blue', 'green', 'yellow', 'purple'];
+            const currentColor = element.style.backgroundColor;
+            let newColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            while (newColor === currentColor) {
+                newColor = colors[Math.floor(Math.random() * colors.length)];
+            }
+            
+            element.style.backgroundColor = newColor;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const hoverBox = document.getElementById('hoverBox');
+            const toggleButton = document.getElementById('toggleButton');
+            const boxes = document.querySelectorAll('.box');
+
+            hoverBox.addEventListener('mouseover', () => {
+                hoverBox.style.backgroundColor = 'orange';
+            });
+
+            hoverBox.addEventListener('mouseout', () => {
+                hoverBox.style.backgroundColor = 'lightgreen';
+            });
+
+            toggleButton.addEventListener('click', () => {
+                boxes.forEach(box => {
+                    if (box.style.display === 'none') {
+                        box.style.display = 'inline-block';
+                    } else {
+                        box.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
