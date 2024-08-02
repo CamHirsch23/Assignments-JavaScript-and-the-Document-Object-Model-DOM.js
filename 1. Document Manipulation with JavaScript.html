@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+    <style>
+        .product {
+            border: 1px solid #ccc;
+            padding: 16px;
+            margin: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Product List</h1>
+    <div id="product-container"></div>
+
+    <script>
+        let products = [
+            { name: "Laptop", price: 999.99, description: "Powerful computing on the go" },
+            { name: "Smartphone", price: 699.99, description: "Stay connected wherever you are" },
+            { name: "Headphones", price: 149.99, description: "Immersive audio experience" }
+        ];
+
+        function displayProducts() {
+            const productContainer = document.getElementById('product-container');
+            productContainer.innerHTML = ''; // Clear any existing content
+
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product';
+
+                const productName = document.createElement('h2');
+                productName.textContent = product.name;
+
+                const productPrice = document.createElement('p');
+                productPrice.textContent = `Price: $${product.price}`;
+
+                const productDescription = document.createElement('p');
+                productDescription.textContent = product.description;
+
+                productElement.appendChild(productName);
+                productElement.appendChild(productPrice);
+                productElement.appendChild(productDescription);
+
+                productContainer.appendChild(productElement);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            displayProducts();
+        });
+    </script>
+</body>
+</html>
